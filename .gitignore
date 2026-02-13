@@ -1,0 +1,20 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# HuggingFace cache
+.cache/
+
+# Audio temp files
+temp_audio.wav
+
+# Model weights
+*.bin
+*.safetensors
+
+# OS files
+.DS_Store
+Thumbs.db

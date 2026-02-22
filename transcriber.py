@@ -1,11 +1,12 @@
-#subprocess execute shell
 import subprocess
 import whisper
 import os
 
 
-
 def extract_audio(video_path: str, audio_path: str = "temp_audio.wav") -> str:
+
+    if not os.path.exists(video_path):
+        raise FileNotFoundError(f"{video_path} not found.")
 
     if os.path.exists(audio_path):
         os.remove(audio_path)
@@ -21,18 +22,15 @@ def extract_audio(video_path: str, audio_path: str = "temp_audio.wav") -> str:
         audio_path
     ]
 
-    print("Running command:", command)
-
     subprocess.run(command, check=True)
 
     return audio_path
 
 
+# Load Whisper model once (better performance)
+whisper_model = whisper.load_model("base")
 
+def transcribe_audio(audio_path: str) -> str:
 
-def transcribe_audio(audio_path:str, model_size: str = "base") ->str:
-     
-    model = whisper.load_model(model_size)
-    result=model.transcribe(audio_path)
-    transcript=result["text"]
-    return transcript
+    result = whisper_model.transcribe(audio_path)
+    return result["text"]

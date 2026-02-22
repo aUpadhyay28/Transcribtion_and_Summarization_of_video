@@ -1,3 +1,4 @@
+import re
 def chunk_text(text: str, chunk_size: int = 2000, overlap: int = 200) -> list:
      """"
      Splits the text into chunks of approximately 'chunk_size charecters,
@@ -44,3 +45,14 @@ def chunked_summarize(text: str, summarize_func, max_chunk_size: int = 2000) -> 
      #4. Run a final summarization step on the combined partial summaries
       final_summary = summarize_func(combined_summary_input)
       return final_summary
+
+def contains_blocked_words(text: str, blocked_words: set) -> bool:
+
+    text = text.lower()
+
+    for phrase in blocked_words:
+        pattern = r"\b" + re.escape(phrase.lower()) + r"\b"
+        if re.search(pattern, text):
+            return True
+
+    return False

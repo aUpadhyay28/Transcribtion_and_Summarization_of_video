@@ -1,6 +1,6 @@
 
 import os
-os.environ["HF_HUB_OFFLINE"] = "1"
+#os.environ["HF_HUB_OFFLINE"] = "1"
 
 from transformers import pipeline
 
@@ -12,8 +12,8 @@ summarizer = pipeline(
 
 def summarize_text(
     text: str,
-    max_length: int = 60,
-    min_length: int = 20
+    max_length: int = 50,
+    min_length: int = 5
 ) -> str:
 
     # Skip summarization if text too short

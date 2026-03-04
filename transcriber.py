@@ -27,7 +27,7 @@ def extract_audio(video_path: str, audio_path: str = "temp_audio.wav") -> str:
     return audio_path
 
 
-# Load Whisper model once (better performance)
+# Load Whisper model once 
 whisper_model = whisper.load_model("base")
 
 def transcribe_audio(audio_path: str) -> str:
